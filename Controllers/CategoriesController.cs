@@ -18,7 +18,6 @@ namespace ExpensesTrackerMangaer.Controllers
             _context = context;
         }
 
-        // GET: Categories
         public async Task<IActionResult> Index()
         {
               return _context.Categories != null ? 
@@ -26,7 +25,6 @@ namespace ExpensesTrackerMangaer.Controllers
                           Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
         }
 
-        // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -44,7 +42,6 @@ namespace ExpensesTrackerMangaer.Controllers
             return View(category);
         }
 
-        // GET: Categories/AddOrEdit
         public IActionResult AddOrEdit(int id=0)
         {
             if (id == 0)
@@ -52,10 +49,6 @@ namespace ExpensesTrackerMangaer.Controllers
             else
                 return View(_context.Categories.Find(id));
         }
-
-        // POST: Categories/AddOrEdit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddOrEdit([Bind("CategoryId,Title,Icon,Type")] Category category)
@@ -72,10 +65,6 @@ namespace ExpensesTrackerMangaer.Controllers
             return View(category);
         }
 
-        // GET: Categories/Edit/5
-    
-
-        // GET: Categories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Categories == null)
@@ -93,7 +82,6 @@ namespace ExpensesTrackerMangaer.Controllers
             return View(category);
         }
 
-        // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
