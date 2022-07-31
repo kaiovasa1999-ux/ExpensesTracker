@@ -28,10 +28,8 @@ namespace ExpensesTrackerMangaer.Controllers
         // GET: Transaction/AddOrEdit
         public IActionResult AddOrEdit(int id = 0)
         {
-            if (id == 0)
-                return View(new Transaction());
-            else
-                return View(_context.Categories.Find(id));
+            PopulateCatagoreis();
+            return View(new Transaction());
         }
 
         // POST: Transaction/Create
@@ -39,7 +37,7 @@ namespace ExpensesTrackerMangaer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
+        public async Task<IActionResult> AddOrEdit([Bind("TransactionId,CategoryId,Amount,Note,Date")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -122,14 +120,23 @@ namespace ExpensesTrackerMangaer.Controllers
             {
                 _context.Transactions.Remove(transaction);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TransactionExists(int id)
         {
-          return (_context.Transactions?.Any(e => e.TransactionId == id)).GetValueOrDefault();
+            return (_context.Transactions?.Any(e => e.TransactionId == id)).GetValueOrDefault();
+        }
+
+        [NonAction]
+        public void PopulateCatagoreis()
+        {
+            var categoreis = _context.Categories.ToList();
+            Category defaultCategory = new Category() { CategoryId = 0, Title = "Choose a Category" };
+            categoreis.Insert(0, defaultCategory);
+            ViewBag.Categories = categoreis;
         }
     }
 }
