@@ -12,7 +12,7 @@ namespace ExpensesTrackerMangaer.Models
         [Required]
         public Category Category { get; set; }
 
-        public int Amount { get; set; }
+        public int Amount { get; set; } = 0;
 
         [Column(TypeName = "nvarchar(500)")]
         public string? Note { get; set; }
