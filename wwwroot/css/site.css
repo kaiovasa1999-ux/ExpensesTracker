@@ -15,8 +15,8 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color : #808080;
-  color:lemonchiffon
+  background-color : rgb(34 43 51);
+  color:blanchedalmond
 }
 .e-bigger {
     font-size: x-large;
@@ -41,4 +41,10 @@ body {
     background-color: #fff;
     color: #212b36;
     border:1px solid #fff;
+}
+
+/*Widget*/
+.Widget{
+    border-radius: 1rem;
+    background-color: #e88743
 }
