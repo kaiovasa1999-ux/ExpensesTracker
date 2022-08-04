@@ -1,6 +1,13 @@
-﻿@{
+﻿@model IEnumerable<ExpensesTrackerMangaer.Models.Category>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+<h1>index</h1>
+
+<p>
+    <a asp-action="AddOrEdit">Create New</a>
+</p>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
